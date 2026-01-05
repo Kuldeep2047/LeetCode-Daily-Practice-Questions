@@ -1,4 +1,4 @@
-// Last updated: 1/5/2026, 1:06:56 PM
+// Last updated: 1/5/2026, 1:15:15 PM
 1class Solution {
 2    HashMap<String , Boolean> map = new HashMap<>();
 3    public boolean wordBreak(String s, List<String> wordDict) {
@@ -21,14 +21,17 @@
 20            String sub = s.substring(0,cut);
 21            if(set.contains(sub)){
 22                boolean ans = answer(s.substring(cut), set);
-23                map.put(s, true);
+23                
 24                if(ans){
-25                    return true;
-26                }
-27            }
-28        }
-29        map.put(s, false);
-30
-31        return false;
-32    }
-33}
+25                    map.put(s, true);
+26                    return true;
+27                    
+28                }
+29
+30            }
+31        }
+32        map.put(s, false);
+33
+34        return false;
+35    }
+36}
