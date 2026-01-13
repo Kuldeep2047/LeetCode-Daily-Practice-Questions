@@ -1,4 +1,4 @@
-// Last updated: 1/13/2026, 9:41:20 PM
+// Last updated: 1/13/2026, 9:41:50 PM
 1class Solution {
 2    public int largestPrime(int n) {
 3        return answer(n);
