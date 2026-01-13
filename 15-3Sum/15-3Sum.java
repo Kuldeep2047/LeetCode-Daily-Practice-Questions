@@ -1,41 +1,39 @@
-// Last updated: 10/5/2025, 9:25:43 PM
-class Solution {
-    public List<List<Integer>> threeSum(int[] nums) {
-        return answer(nums);
-    }
-    public List<List<Integer>> answer(int[] arr){
-        int n = arr.length;
-        Arrays.sort(arr);
-        List<List<Integer>> ans = new ArrayList<>();
-        for(int i=0;i<n;i++){
-            if(i>0 && arr[i] == arr[i-1]){
-                continue;
-            }
-            int si =i+1;
-            int ei = n-1;
-            int sum =0;
-            
-            while(si<ei){
-                sum = (arr[i]+ arr[si] + arr[ei]);
-                if(sum ==0){
-                    List<Integer> ll = new ArrayList<>();
-                    
-                    ans.add(Arrays.asList(arr[i], arr[si], arr[ei]));
-                    si++;
-                    ei--;
-
-                    while(si<ei && arr[si]==arr[si-1]) si++;
-                    while(si < ei && arr[ei] == arr[ei + 1]) ei--;
-                    
-                }else if(sum<0){
-                    si++;
-                }else{
-                    ei--;
-                }
-                
-            }
-        }
-        return ans;
-
-    }
-}
+// Last updated: 1/13/2026, 2:38:14 PM
+1class Solution {
+2    public List<List<Integer>> threeSum(int[] nums) {
+3        return answer(nums);
+4    }
+5    public List<List<Integer>> answer(int[] arr){
+6        int n = arr.length;
+7        Arrays.sort(arr);
+8        List<List<Integer>> ans = new ArrayList<>();
+9
+10        for(int i=0 ;i<n ;i++){
+11            if(i>0 && arr[i] == arr[i-1]){
+12                continue;
+13            }
+14            int si = i+1;
+15            int ei = n-1;
+16            
+17            while(si<ei){
+18                int sum = arr[i] + arr[si] + arr[ei];
+19                if(sum == 0){
+20                    
+21                    ans.add(Arrays.asList(arr[i], arr[si], arr[ei]));
+22                    si++;
+23                    
+24                    while(si<ei && arr[si] == arr[si-1]){
+25                        si++;
+26                    }
+27                }
+28                else if(sum <0){
+29                    si++;
+30                }
+31                else{
+32                    ei--;
+33                }
+34            }
+35        }
+36        return ans;
+37    }
+38}
