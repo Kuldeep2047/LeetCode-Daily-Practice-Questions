@@ -1,4 +1,4 @@
-// Last updated: 12/29/2025, 9:26:48 PM
+// Last updated: 1/23/2026, 12:10:40 PM
 1class Solution {
 2    public int findLengthOfShortestSubarray(int[] arr) {
 3        return answer(arr);
