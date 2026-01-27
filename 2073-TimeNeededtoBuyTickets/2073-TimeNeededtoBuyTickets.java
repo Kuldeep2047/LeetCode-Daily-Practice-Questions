@@ -1,4 +1,4 @@
-// Last updated: 1/27/2026, 2:54:32 PM
+// Last updated: 1/27/2026, 4:25:41 PM
 1class Solution {
 2    public int timeRequiredToBuy(int[] tickets, int k) {
 3        return answer(tickets, k);
@@ -10,7 +10,7 @@
 9        }
 10        int time =0;
 11        int idx =0;
-12        while(q.size() > 0){
+12        while(true){
 13            int r = q.poll()-1;
 14            if(r >=0 ){
 15                time++;
@@ -23,6 +23,6 @@
 22            idx = (idx+1) % arr.length;
 23
 24        }
-25        return time;
+25        // return time;
 26    }
 27}
