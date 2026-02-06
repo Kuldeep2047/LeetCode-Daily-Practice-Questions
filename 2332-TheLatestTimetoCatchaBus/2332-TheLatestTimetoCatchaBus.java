@@ -1,4 +1,4 @@
-// Last updated: 1/26/2026, 10:50:28 PM
+// Last updated: 2/6/2026, 10:06:59 PM
 1class Solution {
 2    public int latestTimeCatchTheBus(int[] buses, int[] passengers, int capacity) {
 3        Arrays.sort(buses);
