@@ -1,4 +1,4 @@
-// Last updated: 2/16/2026, 12:15:40 PM
+// Last updated: 2/16/2026, 2:30:36 PM
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -15,50 +15,33 @@
 14 * }
 15 */
 16class Solution {
-17    int ans =0;
-18    public int maxDepth(TreeNode root) {
-19        // answer(root, 1);
-20        // return ans;
-21
-22        return answer2(root);
+17    public boolean isBalanced(TreeNode root) {
+18        int ans =  answer(root);
+19        if(ans == -1){
+20            return false;
+21        }
+22        return true;
 23    }
 24
-25    public int answer2(TreeNode root){
-26        Queue<TreeNode> q= new LinkedList<>();
-27        q.add(root);
-28        int ans =0;
-29        if(root == null){
-30            return ans;
-31        }
-32
-33        while(!q.isEmpty()){
-34            
-35            int size = q.size();
-36            ans++;
-37
-38            for(int i=0 ;i<size ;i++){
-39                TreeNode r = q.poll();
-40                if(r.left != null){
-41                    q.add(r.left);
-42                }
-43                if(r.right != null){
-44                    q.add(r.right);
-45                }
-46            }
-47        }
-48
-49        return ans;
-50    }
-51
-52    public void answer(TreeNode root, int c){
-53        if(root == null){
-54            return;
-55        }
-56        if(c >= ans){
-57            ans = c;
-58        }
-59
-60        answer(root.left, c+1);
-61        answer(root.right, c+1);
-62    }
-63}
+25    public int answer(TreeNode root){
+26        if(root == null){
+27            return 0;
+28        }
+29
+30        int left = answer(root.left);
+31        if(left == -1){
+32            return -1;  //-1 -> height difference is more than one
+33        }
+34
+35        int right = answer(root.right);
+36        if(right == -1){
+37            return -1;
+38        }
+39
+40        if(Math.abs(left - right) > 1){
+41            return -1;
+42        }
+43
+44        return Math.max(left, right) + 1;
+45    }
+46}
