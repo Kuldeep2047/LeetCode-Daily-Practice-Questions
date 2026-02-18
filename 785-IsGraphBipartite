@@ -1,47 +1,47 @@
-// Last updated: 10/16/2025, 11:44:28 AM
-class Solution {
-    public boolean isBipartite(int[][] graph) {
-        Queue<BipartitePair> q = new LinkedList<>();
-        HashMap<Integer, Integer> visited = new HashMap<>();
-        for (int i = 0; i < graph.length; i++) {	//vtx
-            if(visited.containsKey(i)) {
-                continue;
-            }
-            q.add(new BipartitePair(i,0));
-            while(!q.isEmpty()) {
-                //1. remove
-                BipartitePair rp = q.poll();
-                //2. Ignore if already visited
-                if(visited.containsKey(rp.vtx)) {
-                    if(visited.get(rp.vtx) != rp.dis) {
-                        return false;
-                    }
-                    continue;
-                }
-                //3. Marked visited
-                visited.put(rp.vtx, rp.dis);
-                //4. Self work
-                //5. Add unvisited nbrs
-                for(int nbrs : graph[rp.vtx]) {
-                    if(!visited.containsKey(nbrs)) {
-                        q.add(new BipartitePair(nbrs, rp.dis+1));
-                    }
-                }
-            }
-            
-        }
-        return true;
-        
-        
-    }
-    
-}
-
-class BipartitePair{
-    int vtx;
-    int dis;
-    public BipartitePair(int vtx,int dis) {
-        this.vtx = vtx;
-        this.dis = dis;
-    }
-}
+// Last updated: 2/18/2026, 11:30:51 PM
+1class Solution {
+2    public boolean isBipartite(int[][] graph) {
+3        Queue<BipartitePair> q = new LinkedList<>();
+4        HashMap<Integer, Integer> visited = new HashMap<>();
+5        for (int i = 0; i < graph.length; i++) {	//vtx
+6            if(visited.containsKey(i)) {
+7                continue;
+8            }
+9            q.add(new BipartitePair(i,0));
+10            while(!q.isEmpty()) {
+11                //1. remove
+12                BipartitePair rp = q.poll();
+13                //2. Ignore if already visited
+14                if(visited.containsKey(rp.vtx)) {
+15                    if(visited.get(rp.vtx) != rp.dis) {
+16                        return false;
+17                    }
+18                    continue;
+19                }
+20                //3. Marked visited
+21                visited.put(rp.vtx, rp.dis);
+22                //4. Self work
+23                //5. Add unvisited nbrs
+24                for(int nbrs : graph[rp.vtx]) {
+25                    if(!visited.containsKey(nbrs)) {
+26                        q.add(new BipartitePair(nbrs, rp.dis+1));
+27                    }
+28                }
+29            }
+30            
+31        }
+32        return true;
+33        
+34        
+35    }
+36    
+37}
+38
+39class BipartitePair{
+40    int vtx;
+41    int dis;
+42    public BipartitePair(int vtx,int dis) {
+43        this.vtx = vtx;
+44        this.dis = dis;
+45    }
+46}
