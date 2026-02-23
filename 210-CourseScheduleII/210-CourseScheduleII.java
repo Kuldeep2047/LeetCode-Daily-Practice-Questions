@@ -1,58 +1,57 @@
-// Last updated: 12/31/2025, 12:09:50 PM
+// Last updated: 2/23/2026, 4:11:19 PM
 1class Solution {
-2    public int[] findOrder(int numCourses, int[][] prerequisites) {
-3        return topological_sort(numCourses, prerequisites);
-4    }
-5    public int[] topological_sort(int V, int[][] edges){
-6        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
-7        
-8        for(int i=0 ;i<V ;i++){
-9            map.put(i, new ArrayList<>());
-10        }
-11        
-12        for(int i=0 ;i<edges.length ;i++){
-13            map.get(edges[i][1]).add(edges[i][0]);
-14        }
-15        
-16        int[] in = new int[V];
-17        
-18        for(int key : map.keySet()){
-19            for(int i : map.get(key)){
-20                in[i]++;
-21            }
-22        }
-23        
-24        Queue<Integer> q= new LinkedList<>();
-25        ArrayList<Integer> ll = new ArrayList<>();
-26        
-27        
-28        for(int i=0 ;i<in.length ;i++){
-29            if(in[i] == 0){
-30                q.add(i);
-31            }
-32        }
-33        
-34        while(!q.isEmpty()){
-35            int r = q.poll();
-36            
-37            ll.add(r);
-38            for(int nbrs : map.get(r)){
-39                in[nbrs]--;
-40                
-41                if(in[nbrs] == 0){
-42                    q.add(nbrs);
-43                }
-44            }
+2    
+3    public int[] findOrder(int numCourses, int[][] prerequisites) {
+4        HashMap<Integer, List<Integer>> graph = new HashMap<>();
+5        for(int i=0 ;i<numCourses ; i++){
+6            graph.put(i, new ArrayList<>());
+7        }
+8
+9        for(int[] edge : prerequisites){
+10            int u  =  edge[0];
+11            int v = edge[1];
+12            graph.get(v).add(u);
+13        }
+14
+15        int[] in = new int[numCourses];
+16
+17        for(int key : graph.keySet()){
+18            for(int i : graph.get(key)){
+19                in[i]++;
+20            }
+21        }
+22        List<Integer> ll = new ArrayList<>();
+23        Queue<Integer> q= new LinkedList<>();
+24
+25        for(int i=0 ;i<numCourses ; i++){
+26            if(in[i] == 0){
+27                q.add(i);
+28            }
+29        }
+30
+31        while(!q.isEmpty()){
+32            int r  = q.poll();
+33            ll.add(r);
+34
+35            for(int nbrs : graph.get(r)){
+36                in[nbrs]--;
+37                if(in[nbrs] == 0){
+38                    q.add(nbrs);
+39                }
+40            }
+41        }
+42
+43        if(ll.size() < numCourses){
+44            return new int[0];
 45        }
-46        
-47        if(ll.size() < V){
-48            return new int[0];
-49        }
-50        int[] arr = new int[ll.size()];
-51        int c =0;
-52        for(int a : ll){
-53            arr[c++] = a;
-54        }
-55        return arr;
-56    }
-57}
+46
+47        int[] ans = new int[ll.size()];
+48        int c = 0;
+49        for(int a : ll){
+50            ans[c++] = a;
+51        }
+52        return ans;
+53
+54
+55    }
+56}
