@@ -1,48 +1,44 @@
-// Last updated: 12/31/2025, 10:32:43 AM
+// Last updated: 2/23/2026, 3:37:41 PM
 1class Solution {
-2    private HashMap<Integer,HashMap<Integer,Integer>> map;
-3
-4    public void AddEdge(int v1 ,int v2, int cost){
-5        map.get(v1).put(v2, cost);
-6        map.get(v2).put(v1, cost);
-7    }
-8    public boolean validPath(int n, int[][] edges, int source, int destination) {
-9        map = new HashMap<>();
-10        for(int i=0 ;i<n ;i++){
-11            map.put(i, new HashMap<>());
-12        }
-13
-14        for(int[] arr : edges){
-15            AddEdge(arr[0], arr[1], 0);
-16        }
-17
-18        return path(source, destination);
-19    }
-20
-21    public boolean path(int src, int des){
-22        HashSet<Integer> visited = new HashSet<>();
-23        Queue<Integer> q = new LinkedList<>();
-24        q.add(src);
+2    HashMap<Integer, List<Integer>> graph;
+3    public boolean validPath(int n, int[][] edges, int source, int destination) {
+4        graph = new HashMap<>();
+5        for(int i=0 ;i<n ;i++){
+6            graph.put(i, new ArrayList<>());
+7        }
+8
+9        for(int [] ed : edges){
+10            int u = ed[0];
+11            int v = ed[1];
+12            graph.get(u).add(v);
+13            graph.get(v).add(u);
+14        }
+15
+16        return isPath(source, destination);
+17    }
+18
+19    public boolean isPath(int src, int des){
+20        Queue<Integer> q=  new LinkedList<>();
+21        HashSet<Integer> visited = new HashSet<>();
+22        q.add(src);
+23        while(!q.isEmpty()){
+24            int r = q.poll();
 25
-26        while(!q.isEmpty()){
-27            int r  = q.poll();
-28
-29            if(visited.contains(r)){
-30                continue;
-31            }
-32
-33            visited.add(r);
+26            if(visited.contains(r)){
+27                continue;
+28            }
+29            visited.add(r);
+30
+31            if(r == des){
+32                return true;
+33            }
 34
-35            if(r == des){
-36                return true;
-37            }
-38
-39            for(int nbrs : map.get(r).keySet()){
-40                if(!visited.contains(nbrs)){
-41                    q.add(nbrs);
-42                }
-43            }
-44        }
-45        return false;
-46    }
-47}
+35            for(int nbrs : graph.get(r)){
+36                if(!visited.contains(nbrs)){
+37                    q.add(nbrs);
+38                }
+39            }
+40        }
+41        return false;
+42    }
+43}
