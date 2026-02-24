@@ -1,4 +1,4 @@
-// Last updated: 1/2/2026, 10:23:31 PM
+// Last updated: 2/24/2026, 12:59:00 PM
 1class Solution {
 2    public int edgeScore(int[] edges) {
 3        HashMap<Integer, List<Integer>> map = new HashMap<>();
