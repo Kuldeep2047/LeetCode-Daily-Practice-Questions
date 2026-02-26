@@ -1,4 +1,4 @@
-// Last updated: 2/26/2026, 11:22:47 AM
+// Last updated: 2/26/2026, 11:26:20 AM
 1class Solution {
 2    public int[] minimumTime(int n, int[][] edges, int[] disappear) {
 3        return answer(n, edges, disappear);
@@ -18,7 +18,7 @@
 17
 18        int[] ans = new int[n];
 19        Arrays.fill(ans, 9999999);
-20        // boolean[] visited = new boolean[n];
+20
 21        HashSet<Integer> visited = new HashSet<>();
 22        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)-> a[1] - b[1]);
 23        pq.add(new int[]{0,0});
@@ -36,10 +36,10 @@
 35
 36            //add nbrs
 37            for(int[] nbrs : ll.get(r[0])){
-38                int dis = r[1] + nbrs[1];
-39                if(dis< disappear[nbrs[0]] && dis < ans[nbrs[0]]){
-40                    ans[nbrs[0]] = dis;
-41                    pq.add(new int[]{nbrs[0], dis});
+38                int time = r[1] + nbrs[1];
+39                if(time < disappear[nbrs[0]] && time < ans[nbrs[0]]){
+40                    ans[nbrs[0]] = time;
+41                    pq.add(new int[]{nbrs[0], time});
 42                }
 43            }
 44        }
