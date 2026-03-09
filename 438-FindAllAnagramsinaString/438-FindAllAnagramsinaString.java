@@ -1,4 +1,4 @@
-// Last updated: 3/9/2026, 3:35:41 PM
+// Last updated: 3/9/2026, 3:40:47 PM
 1class Solution {
 2    public List<Integer> findAnagrams(String s, String p) {
 3        return Anagrams(s,p);
@@ -18,7 +18,7 @@
 17        while(ei < n){
 18            freq[s.charAt(ei)-'a']--;
 19
-20            while(ei -si +1 == m && si<n){
+20            if(ei -si +1 == m && si<n){
 21                if(isAns(freq)){
 22                    ll.add(si);
 23                }
