@@ -1,29 +1,29 @@
-// Last updated: 12/30/2025, 11:39:49 AM
+// Last updated: 3/10/2026, 10:54:00 AM
 1class Solution {
 2    public int numIslands(char[][] grid) {
-3        int count =0;
-4
-5        for(int i=0 ;i<grid.length ;i++){
-6            for(int j=0 ;j<grid[0].length ;j++){
-7                if(grid[i][j] == '1'){
-8                    Island(grid, i,j);
-9                    count++;
-10                }
-11            }
-12        }
-13        return count;
-14        
-15    }
-16    public void Island(char[][] grid, int r, int c){
-17        if(r<0 || c<0 || r>=grid.length || c>=grid[0].length || grid[r][c] != '1'){
-18            return;
-19        }
-20
-21        grid[r][c] = '*';
-22
-23        Island(grid, r+1, c);
-24        Island(grid, r, c-1);
-25        Island(grid, r-1, c);
-26        Island(grid, r, c+1);
+3        int ans =0;
+4        int n = grid.length;
+5        int m = grid[0].length;
+6        for(int i=0 ;i<n ;i++){
+7            for(int j=0 ;j<m ;j++){
+8                if(grid[i][j] == '1'){
+9                    answer(grid, i,j);
+10                    ans++;
+11                }
+12                
+13            }
+14        }
+15        return ans;
+16    }
+17    public void answer(char[][] grid, int r, int c){
+18        if(r<0 || c<0 || r>=grid.length || c>= grid[0].length || grid[r][c] != '1'){
+19            return;
+20        }
+21
+22        grid[r][c] = '*';
+23        answer(grid ,r+1,c);
+24        answer(grid, r,c-1);
+25        answer(grid,r-1,c);
+26        answer(grid ,r,c+1);
 27    }
 28}
