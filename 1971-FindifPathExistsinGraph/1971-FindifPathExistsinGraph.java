@@ -1,44 +1,42 @@
-// Last updated: 2/23/2026, 3:37:41 PM
+// Last updated: 3/10/2026, 10:30:16 AM
 1class Solution {
-2    HashMap<Integer, List<Integer>> graph;
-3    public boolean validPath(int n, int[][] edges, int source, int destination) {
-4        graph = new HashMap<>();
-5        for(int i=0 ;i<n ;i++){
-6            graph.put(i, new ArrayList<>());
-7        }
-8
-9        for(int [] ed : edges){
-10            int u = ed[0];
-11            int v = ed[1];
-12            graph.get(u).add(v);
-13            graph.get(v).add(u);
-14        }
-15
-16        return isPath(source, destination);
-17    }
-18
-19    public boolean isPath(int src, int des){
-20        Queue<Integer> q=  new LinkedList<>();
-21        HashSet<Integer> visited = new HashSet<>();
-22        q.add(src);
-23        while(!q.isEmpty()){
-24            int r = q.poll();
-25
-26            if(visited.contains(r)){
-27                continue;
-28            }
-29            visited.add(r);
-30
-31            if(r == des){
-32                return true;
-33            }
-34
-35            for(int nbrs : graph.get(r)){
-36                if(!visited.contains(nbrs)){
-37                    q.add(nbrs);
-38                }
-39            }
-40        }
-41        return false;
-42    }
-43}
+2    public boolean validPath(int n, int[][] edges, int source, int destination) {
+3        HashMap<Integer, List<Integer>> map = new HashMap<>();
+4        for(int i=0 ;i<n ;i++){
+5            map.put(i, new ArrayList<>());
+6        }
+7        for(int[] arr : edges){
+8            int u = arr[0];
+9            int v = arr[1];
+10            map.get(u).add(v);
+11            map.get(v).add(u);
+12        }
+13
+14        return answer(source, destination, map);
+15    }
+16    public boolean answer(int src, int des, HashMap<Integer, List<Integer>> map){
+17        Queue<Integer> q= new LinkedList<>();
+18        HashSet<Integer> visited= new HashSet<>();
+19        q.add(src);
+20        while(!q.isEmpty()){
+21            int r = q.poll();
+22
+23            if(visited.contains(r)){
+24                continue;
+25            }
+26
+27            visited.add(r);
+28
+29            if(r == des){
+30                return true;
+31            }
+32
+33            for(int nbrs : map.get(r)){
+34                if(!visited.contains(nbrs)){
+35                    q.add(nbrs);
+36                }
+37            }
+38        }
+39        return false;
+40    }
+41}
