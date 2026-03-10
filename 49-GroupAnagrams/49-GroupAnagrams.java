@@ -1,32 +1,21 @@
-// Last updated: 8/28/2025, 11:17:53 AM
-class Solution {
-    public static List<List<String>> groupAnagrams(String[] arr) {
-        HashMap<String,List<String>> map = new HashMap<>();
-        for(int i=0;i<arr.length;i++) {
-        	String key = GetKey(arr[i]);
-        	if(!map.containsKey(key)) {
-        		map.put(key,  new ArrayList<>());
-        	}
-        	map.get(key).add(arr[i]);
-        }
-        List<List<String>> ll = new ArrayList<>();
-        for(String key:map.keySet()) {
-        	ll.add(map.get(key));
-        }
-        return ll;
-        
-    }
-	
-	public static String GetKey(String s) {
-		int[] freq = new int[26];
-		for(int i=0;i<s.length();i++) {
-			char ch = s.charAt(i);
-			freq[ch-'a']++;
-		}
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < freq.length; i++) {
-			sb.append(freq[i]+",");
-		}
-		return sb.toString();
-	}
-}
+// Last updated: 3/10/2026, 2:57:14 PM
+1class Solution {
+2    public List<List<String>> groupAnagrams(String[] strs) {
+3        return answer(strs);
+4    }
+5    public List<List<String>> answer(String[] strs){
+6        HashMap<String, List<String>> map = new HashMap<>();
+7        for(String s : strs){
+8            char[] arr = s.toCharArray();
+9            Arrays.sort(arr);
+10            String st = new String(arr);
+11
+12            if(!map.containsKey(st)){
+13                map.put(st, new ArrayList<>());
+14            }
+15            map.get(st).add(s);
+16        }
+17
+18        return new ArrayList<>(map.values());
+19    }
+20}
