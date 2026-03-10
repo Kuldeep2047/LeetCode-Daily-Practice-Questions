@@ -1,4 +1,4 @@
-// Last updated: 1/13/2026, 2:14:55 PM
+// Last updated: 3/10/2026, 3:59:39 PM
 1class Solution {
 2    public int strStr(String haystack, String needle) {
 3        return answer(haystack, needle);
@@ -8,7 +8,7 @@
 7        int n = s.length();
 8        int m = sub.length();
 9
-10        // int idx =-1;
+10        
 11        for(int i=0 ;i<=n - m ;i++){
 12            if(sub.equals(s.substring(i,i+m))){
 13                return i;
