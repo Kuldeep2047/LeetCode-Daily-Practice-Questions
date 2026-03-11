@@ -1,33 +1,23 @@
-// Last updated: 8/9/2025, 1:43:52 PM
-class Solution {
-    public int[] topKFrequent(int[] nums, int k) {
-        return top_k(nums,k);
-    }
-    public static int[] top_k(int[] nums,int k){
-        int max = nums[0];
-        int min = nums[0];
-        int[] ans = new int[k];
-        for(int i=1;i<nums.length;i++){
-            if(max<nums[i]){
-                max = nums[i];
-            }
-            if(min>nums[i]){
-                min = nums[i];
-            }
-        }
-        int range = max-min+1;
-        int[][] arr = new int[range][2];
-        int j=0;
-        for(int n:nums){
-            int idx = n-min;
-            arr[idx][0] = n;
-            arr[idx][1]++;
-        }
-        // int c=0;
-        Arrays.sort(arr, (a,b)-> Integer.compare(b[1],a[1]));
-        for(int i=0;i<k;i++){
-            ans[i] = arr[i][0];
-        }
-        return ans;
-    }
-}
+// Last updated: 3/11/2026, 11:24:24 AM
+1class Solution {
+2    public int[] topKFrequent(int[] nums, int k) {
+3        return top_k(nums,k);
+4    }
+5    public static int[] top_k(int[] arr,int k){
+6        HashMap<Integer, Integer> map = new HashMap<>();
+7        int n = arr.length;
+8        for(int i=0 ;i<n ;i++){
+9            map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
+10        }
+11        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)-> map.get(b) - map.get(a));
+12        for(int key : map.keySet()){
+13            pq.add(key);
+14        }
+15
+16        int[] ans = new int[k];
+17        for(int i=0 ;i<k ;i++){
+18            ans[i] = pq.poll();
+19        }
+20        return ans;
+21    }
+22}
