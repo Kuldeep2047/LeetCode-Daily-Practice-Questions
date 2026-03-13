@@ -1,4 +1,4 @@
-// Last updated: 3/13/2026, 2:27:32 PM
+// Last updated: 3/13/2026, 2:41:51 PM
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -16,17 +16,19 @@
 15 */
 16class Solution {
 17    public TreeNode convertBST(TreeNode root) {
-18        return answer(root);
-19    }
-20    int sum =0;
-21    public TreeNode answer(TreeNode root){
-22        if(root == null){
-23            return null;
-24        }
-25        answer(root.right);
-26        sum += root.val;
-27        root.val = sum;
-28        answer(root.left);
-29        return root;
-30    }
-31}
+18        // return answer(root);
+19        answer(root);
+20        return root;
+21    }
+22    int sum =0;
+23    public void answer(TreeNode root){
+24        if(root == null){
+25            return ;
+26        }
+27        answer(root.right);
+28        sum += root.val;
+29        root.val = sum;
+30        answer(root.left);
+31        // return root;
+32    }
+33}
