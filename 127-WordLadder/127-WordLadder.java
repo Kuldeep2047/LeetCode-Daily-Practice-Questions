@@ -1,4 +1,4 @@
-// Last updated: 3/16/2026, 11:38:21 AM
+// Last updated: 3/16/2026, 12:06:35 PM
 1class Solution {
 2    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 3        return answer(beginWord, endWord, wordList);
@@ -11,9 +11,9 @@
 10            
 11            char c = s.charAt(i);
 12            for(char ch = 'a' ;ch <='z' ;ch++){
-13            //    if(ch == c){
-14            //         continue;
-15            //    }
+13               if(ch == c){
+14                    continue;
+15               }
 16               String newWord = s.substring(0,i)+ ch + s.substring(i+1);
 17                if(set.contains(newWord)){
 18                    ans.add(newWord);
@@ -46,7 +46,7 @@
 45        HashSet<String> visited = new HashSet<>();
 46        q.add(start);
 47        visited.add(start);
-48        int level =1;
+48        int level = 1;
 49
 50        while(!q.isEmpty()){
 51            
@@ -66,13 +66,9 @@
 65                    }
 66                }
 67            }
-68
-69
-70            level++;
-71
-72
-73        }
-74
-75        return 0;
-76    }
-77}
+68            level++;
+69        }
+70
+71        return 0;
+72    }
+73}
