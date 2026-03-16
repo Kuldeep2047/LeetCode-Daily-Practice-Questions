@@ -1,4 +1,4 @@
-// Last updated: 12/31/2025, 3:38:29 PM
+// Last updated: 3/16/2026, 2:46:44 PM
 1class Solution {
 2    public int networkDelayTime(int[][] times, int n, int k) {
 3        return answer(times, n, k);
@@ -28,42 +28,41 @@
 27			}
 28			
 29			visited.add(rp.vtx);
-30			
-31			// System.out.println(rp);
-32            find.put(rp.vtx, rp.cost);
-33			
-34			for (int nbrs : map.get(rp.vtx).keySet()) {
-35				if (!visited.contains(nbrs)) {
-36					int cost = map.get(rp.vtx).get(nbrs);
-37					pq.add(new DijkstraPair(nbrs,  rp.cost + cost));
-38				}
-39			}
-40		}
-41
-42        return find;
-43	}
-44
-45    public int answer(int[][] times, int n, int k){
-46        HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();
-47        for(int i=1 ;i<=n ;i++){
-48            map.put(i, new HashMap<>());
-49        }
-50
-51        for(int i=0 ;i<times.length ;i++){
-52            map.get(times[i][0]).put(times[i][1], times[i][2]);
-53        }
-54
-55        HashMap<Integer, Integer> find = new HashMap<>();
-56        Dijkstra(map, k, find);
-57
-58        if(find.size() < n){
-59            return -1;
-60        }
-61        int max = Integer.MIN_VALUE;
-62        for(int key: find.keySet()) {
-63            max = Math.max(find.get(key), max);
-64        }
-65        return max;
-66
-67    }
-68}
+30
+31            find.put(rp.vtx, rp.cost);
+32			
+33			for (int nbrs : map.get(rp.vtx).keySet()) {
+34				if (!visited.contains(nbrs)) {
+35					int cost = map.get(rp.vtx).get(nbrs);
+36					pq.add(new DijkstraPair(nbrs,  rp.cost + cost));
+37				}
+38			}
+39		}
+40
+41        return find;
+42	}
+43
+44    public int answer(int[][] times, int n, int k){
+45        HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();
+46        for(int i=1 ;i<=n ;i++){
+47            map.put(i, new HashMap<>());
+48        }
+49
+50        for(int i=0 ;i<times.length ;i++){
+51            map.get(times[i][0]).put(times[i][1], times[i][2]);
+52        }
+53
+54        HashMap<Integer, Integer> find = new HashMap<>();
+55        Dijkstra(map, k, find);
+56
+57        if(find.size() < n){
+58            return -1;
+59        }
+60        int max = Integer.MIN_VALUE;
+61        for(int key: find.keySet()) {
+62            max = Math.max(find.get(key), max);
+63        }
+64        return max;
+65
+66    }
+67}
