@@ -1,4 +1,4 @@
-// Last updated: 1/2/2026, 11:35:06 AM
+// Last updated: 3/16/2026, 10:36:03 AM
 1/*
 2// Definition for a Node.
 3class Node {
@@ -21,27 +21,31 @@
 20
 21class Solution {
 22    public Node cloneGraph(Node node) {
-23        if(node == null){
-24            return null;
-25        }
-26
-27        HashMap<Node, Node> map = new HashMap<>();
-28        Stack<Node> st = new Stack<>();
-29
-30        st.push(node);
-31        map.put(node, new Node(node.val));
-32
-33        while(!st.isEmpty()){
-34            Node r = st.pop();
+23        return answer(node);
+24    }
+25    public Node answer(Node node){
+26        if(node == null){
+27            return null;
+28        }
+29        Stack<Node> st = new Stack<>();
+30        HashMap<Node, Node> map = new HashMap<>();
+31
+32        //apply dfs
+33        st.push(node);
+34        map.put(node, new Node(node.val));
 35
-36            for(Node nbrs : r.neighbors){
-37                if(!map.containsKey(nbrs)){
-38                    map.put(nbrs, new Node(nbrs.val));
-39                    st.push(nbrs);
-40                }
-41                map.get(r).neighbors.add(map.get(nbrs));
-42            }
-43        }
-44        return map.get(node);
-45    }
-46}
+36        while(!st.isEmpty()){
+37            Node r= st.pop();
+38
+39            for(Node nbrs : r.neighbors){
+40                if(!map.containsKey(nbrs)){
+41                    map.put(nbrs ,new Node(nbrs.val));
+42                    st.push(nbrs);
+43                }
+44                map.get(r).neighbors.add(map.get(nbrs));
+45            }
+46        }
+47        return map.get(node);
+48
+49    }
+50}
