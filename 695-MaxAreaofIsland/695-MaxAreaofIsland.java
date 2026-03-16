@@ -1,31 +1,28 @@
-// Last updated: 12/30/2025, 12:14:07 PM
+// Last updated: 3/16/2026, 10:54:40 AM
 1class Solution {
 2    public int maxAreaOfIsland(int[][] grid) {
 3        int ans =0;
-4
-5        for(int i=0 ;i<grid.length ;i++){
-6            for(int j=0 ;j<grid[0].length ;j++){
-7                if(grid[i][j] == 1){
-8                    ans = Math.max(ans, Island(grid, i,j));
-9                    
+4        int n = grid.length;
+5        int m = grid[0].length;
+6        for(int i=0 ;i<n ;i++){
+7            for(int j=0 ;j<m ;j++){
+8                if(grid[i][j] == 1){
+9                    ans = Math.max(ans, answer(grid, i, j));
 10                }
 11            }
 12        }
 13        return ans;
 14    }
-15
-16    public int Island(int[][] grid, int r, int c){
-17        if(r<0 || c<0 || r>=grid.length || c>=grid[0].length || grid[r][c] != 1){
-18            return 0;
-19        }
-20
-21        grid[r][c] = 2;
-22
-23        int bottom =  Island(grid, r+1, c);
-24        int left =  Island(grid, r, c-1);
-25        int up =  Island(grid, r-1, c);
-26        int right =  Island(grid, r, c+1);
-27
-28        return bottom + left + up + right +1;
-29    }
-30}
+15    public int answer(int[][] grid, int cr, int cc){
+16        if(cr <0 || cc<0 || cr >= grid.length || cc>=grid[0].length || grid[cr][cc] != 1){
+17            return 0;
+18        }
+19        grid[cr][cc] = 5;
+20        int a = answer(grid, cr+1, cc);
+21        int b = answer(grid, cr, cc+1);
+22        int c = answer(grid, cr-1, cc);
+23        int d = answer(grid, cr, cc-1);
+24
+25        return a +b + c+d +1;
+26    }
+27}
