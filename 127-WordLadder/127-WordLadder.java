@@ -1,4 +1,4 @@
-// Last updated: 3/17/2026, 12:45:56 PM
+// Last updated: 3/17/2026, 12:46:28 PM
 1class Solution {
 2    public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
 3        List<List<double[]>> adj = new ArrayList<>();
