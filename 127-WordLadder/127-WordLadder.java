@@ -1,74 +1,45 @@
-// Last updated: 3/16/2026, 12:06:35 PM
+// Last updated: 3/17/2026, 12:45:56 PM
 1class Solution {
-2    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-3        return answer(beginWord, endWord, wordList);
-4    }
-5
-6    public List<String> DifferByOne(String s, HashSet<String> set){
-7        List<String> ans = new ArrayList<>();
-8        // int d =0;
-9        for(int i=0 ;i<s.length() ;i++){
-10            
-11            char c = s.charAt(i);
-12            for(char ch = 'a' ;ch <='z' ;ch++){
-13               if(ch == c){
-14                    continue;
-15               }
-16               String newWord = s.substring(0,i)+ ch + s.substring(i+1);
-17                if(set.contains(newWord)){
-18                    ans.add(newWord);
-19                }
-20            }
-21        }
-22        return ans;
-23        
-24    }
-25
-26    public int answer(String start, String end, List<String> word){
-27        HashSet<String> set = new HashSet<>();
-28        for(String a : word){
-29            set.add(a);
-30        }
-31        set.add(start);
-32        if( ! set.contains(end)){
-33            return 0;
-34        }
-35
-36        //create graph
-37        HashMap<String, List<String>> map = new HashMap<>();
-38        for(String s : set){
-39            List<String> nbrs  = DifferByOne(s, set);
-40            map.put(s, nbrs);
+2    public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
+3        List<List<double[]>> adj = new ArrayList<>();
+4        for(int i = 0; i < n; i++){
+5            adj.add(new ArrayList<>());
+6        }
+7
+8        for (int i = 0; i < edges.length; i++) {
+9            int u = edges[i][0];
+10            int v = edges[i][1];
+11            adj.get(u).add(new double[]{v, succProb[i]});
+12            adj.get(v).add(new double[]{u, succProb[i]});
+13        }
+14
+15        double[] dis = new double[n];
+16        Arrays.fill(dis, 0.0);
+17        dis[start_node] = 1.0;
+18
+19        PriorityQueue<double[]> pq = new PriorityQueue<>((a, b) -> Double.compare(b[1], a[1]));
+20        pq.add(new double[]{start_node, 1.0});
+21
+22        while (!pq.isEmpty()) {
+23            double[] cur = pq.poll();
+24            int node = (int) cur[0];
+25            double d = cur[1];
+26
+27            if(dis[node] > d){
+28                continue;
+29            }
+30
+31            for(double[] nbr : adj.get(node)){
+32                int next = (int) nbr[0];
+33                double wt = nbr[1];
+34
+35                if(d * wt > dis[next]){
+36                    dis[next] = d * wt;
+37                    pq.add(new double[]{next, dis[next]});
+38                }
+39            }
+40
 41        }
-42
-43        //bfs
-44        Queue<String> q= new LinkedList<>();
-45        HashSet<String> visited = new HashSet<>();
-46        q.add(start);
-47        visited.add(start);
-48        int level = 1;
-49
-50        while(!q.isEmpty()){
-51            
-52            int size =q.size();
-53
-54            for(int i=0 ;i<size ;i++){
-55                String r = q.poll();
-56            
-57
-58                if(r.equals(end)){
-59                    return level;
-60                }
-61                for(String nbrs : map.get(r)){
-62                    if(!visited.contains(nbrs)){
-63                        q.add(nbrs);
-64                        visited.add(nbrs);
-65                    }
-66                }
-67            }
-68            level++;
-69        }
-70
-71        return 0;
-72    }
-73}
+42        return dis[end_node] == Double.MIN_VALUE ? 1 : dis[end_node];
+43    }
+44}
