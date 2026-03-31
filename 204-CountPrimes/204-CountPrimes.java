@@ -1,4 +1,4 @@
-// Last updated: 1/13/2026, 3:33:41 PM
+// Last updated: 3/31/2026, 11:55:13 AM
 1class Solution {
 2    public int countPrimes(int n) {
 3        if(n==0 || n==1){
@@ -20,7 +20,7 @@
 19            }
 20        }
 21
-22        //System.out.print(Arrays.toString(arr));
+22        
 23        int c =0;
 24        for(int i=1 ;i<n ;i++){
 25            if(arr[i] == true){
