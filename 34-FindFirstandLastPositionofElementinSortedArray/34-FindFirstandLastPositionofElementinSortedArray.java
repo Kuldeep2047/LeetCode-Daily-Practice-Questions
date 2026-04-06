@@ -1,4 +1,4 @@
-// Last updated: 4/6/2026, 2:52:38 PM
+// Last updated: 4/6/2026, 2:53:06 PM
 1class Solution {
 2    public int[] searchRange(int[] nums, int target) {
 3        int[] ans = new int[2];
@@ -7,28 +7,29 @@
 6        return ans;
 7    }
 8
-9    public int answer(int[] nums ,int target, boolean isLeft){
-10        int left = 0;
-11        int right = nums.length - 1;
-12        int idx = -1;
-13
-14        while (left <= right) {
-15            int mid = left + (right - left) / 2;
-16            
-17            if (nums[mid] > target) {
-18                right = mid - 1;
-19            } else if (nums[mid] < target) {
-20                left = mid + 1;
-21            } else {
-22                idx = mid;
-23                if (isLeft) {
-24                    right = mid - 1;
-25                } else {
-26                    left = mid + 1;
-27                }
-28            }
-29        }
-30
-31        return idx;
-32    }
-33}
+9    public int answer(int[] arr ,int tar, boolean isLeft){
+10        int n = arr.length;
+11        int si =0;
+12        int ei = n-1;
+13        int index = -1;
+14        while(si <= ei){
+15            int mid = ei + (si - ei)/2;
+16
+17            if(arr[mid] < tar){
+18                si = mid+1;
+19            }
+20            else if(arr[mid] > tar){
+21                ei = mid-1;
+22            }else{
+23                index = mid;
+24                if(isLeft){
+25                    ei = mid-1;
+26                }else{
+27                    si = mid+1;
+28                }
+29
+30            }
+31        }
+32        return index;
+33    }
+34}
