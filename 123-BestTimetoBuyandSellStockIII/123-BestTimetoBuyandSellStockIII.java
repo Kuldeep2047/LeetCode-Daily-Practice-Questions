@@ -1,4 +1,4 @@
-// Last updated: 1/6/2026, 12:30:18 PM
+// Last updated: 4/14/2026, 11:44:14 AM
 1class Solution {
 2    public int maxProfit(int[] prices) {
 3        int[][][] dp = new int[prices.length][3][3];
@@ -31,6 +31,7 @@
 30            profit = Math.max(sell, nosell);
 31        }
 32        
-33        return dp[idx][state][t] =  profit;
-34    }
-35}
+33        
+34        return dp[idx][state][t] =  profit;
+35    }
+36}
