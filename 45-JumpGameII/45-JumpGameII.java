@@ -1,4 +1,4 @@
-// Last updated: 5/14/2026, 10:33:02 PM
+// Last updated: 5/14/2026, 10:33:58 PM
 1class Solution {
 2    public boolean canReach(int[] arr, int start) {
 3        boolean[] visited = new boolean[arr.length];
