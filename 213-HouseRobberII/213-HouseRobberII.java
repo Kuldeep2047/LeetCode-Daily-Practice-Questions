@@ -1,24 +1,25 @@
-// Last updated: 10/6/2025, 11:50:05 AM
-class Solution {
-    public int rob(int[] nums) {
-        int a = answer(nums , 1, nums.length-1);
-        int b = answer(nums, 0, nums.length-2);
-        return Math.max(a,b);
-    }
-    public int answer(int[] arr, int si ,int ei){
-        if(arr.length == 1){
-            return arr[0];
-        }
-        int prev2 =0;
-        int prev =arr[si];
-        for(int i=si+1;i<=ei ;i++){
-            int pick = arr[i] + prev2;
-            int not_pick = prev;
-            int curr = Math.max(pick, not_pick);
-
-            prev2 = prev;
-            prev = curr;
-        }
-        return prev;
-    }
-}
+// Last updated: 5/19/2026, 10:06:27 PM
+1class Solution {
+2    public int rob(int[] nums) {
+3        if(nums.length == 1){
+4            return nums[0];
+5        }
+6        int a = answer(nums, 0, nums.length -2);
+7        int b = answer(nums, 1, nums.length -1);
+8        return Math.max(a,b);
+9    }
+10
+11    public int answer(int[] arr, int si, int ei){
+12        int curr =0;
+13        int prev =0;
+14
+15        while(si <= ei){
+16            int t = Math.max(curr, prev + arr[si]);
+17
+18            prev = curr;
+19            curr = t;
+20            si++;
+21        }
+22        return curr;
+23    }
+24}
