@@ -1,4 +1,4 @@
-// Last updated: 12/18/2025, 10:33:28 PM
+// Last updated: 7/13/2026, 9:30:11 AM
 1class Solution {
 2    public int maxArea(int[] height) {
 3        return answer(height);
@@ -8,20 +8,19 @@
 7        int n = arr.length;
 8        int left =0;
 9        int right = n-1;
-10
-11        int ans = Integer.MIN_VALUE;
-12
-13        while(left < right){
+10        int ans = Integer.MIN_VALUE;
+11
+12        while(left  <= right){
+13            int h = Math.min(arr[left], arr[right]);
 14            int w = right - left;
-15            int h = Math.min(arr[left], arr[right]);
-16            ans = Math.max(ans, w*h);
-17
-18            if(arr[right] < arr[left]){
-19                right--;
-20            }else{
-21                left++;
-22            }
-23        }
-24        return ans;
-25    }
-26}
+15            ans = Math.max(ans, h * w);
+16
+17            if(arr[left] < arr[right]){
+18                left++;
+19            }else{
+20                right--;
+21            }
+22        }
+23        return ans;
+24    }
+25}
