@@ -1,4 +1,4 @@
-// Last updated: 1/30/2026, 12:34:07 PM
+// Last updated: 7/22/2026, 1:12:48 PM
 1class Solution {
 2    public int maxResult(int[] nums, int k) {
 3        int n = nums.length;
@@ -16,7 +16,7 @@
 15        int ans = arr[0]; // this contain max value till curr index
 16        pq.add(new int[]{0, ans});
 17        for(int i=1 ;i<n ;i++){
-18            while(!(i - pq.peek()[0] <= k)){
+18            while(!(i - pq.peek()[0] <= k)){ 
 19                pq.poll();
 20            }
 21            ans = arr[i] + pq.peek()[1];
@@ -25,18 +25,21 @@
 24
 25        return ans;
 26    }
-27    // public int answer(int[] arr, int k, int idx,int[] dp){
-28    //     if(idx == arr.length-1){
-29    //         return arr[idx];
-30    //     }
-31    //     if(dp[idx] != Integer.MIN_VALUE){
-32    //         return dp[idx];
-33    //     }
-34    //     int sum =Integer.MIN_VALUE;;
-35        
-36    //     for(int i=idx+1 ;i<=Math.min(arr.length-1, idx+k); i++){
-37    //         sum = Math.max(sum, answer(arr,k,i,dp));
-38    //     }
-39    //     return dp[idx] =  arr[idx] +sum;
-40    // }
-41}
+27
+28
+29    // public int answer(int[] arr, int k, int idx,int[] dp){
+30    //     if(idx == arr.length-1){
+31    //         return arr[idx];
+32    //     }
+33    //     if(dp[idx] != Integer.MIN_VALUE){
+34    //         return dp[idx];
+35    //     }
+36    //     int sum =Integer.MIN_VALUE;;
+37        
+38    //     for(int i=idx+1 ;i<=Math.min(arr.length-1, idx+k); i++){
+39    //         sum = Math.max(sum, answer(arr,k,i,dp));
+40    //     }
+41    //     return dp[idx] =  arr[idx] +sum;
+42    // }
+43    
+44}
