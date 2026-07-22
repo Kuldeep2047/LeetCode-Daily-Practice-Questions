@@ -1,4 +1,4 @@
-// Last updated: 2/26/2026, 11:26:20 AM
+// Last updated: 7/22/2026, 1:54:23 PM
 1class Solution {
 2    public int[] minimumTime(int n, int[][] edges, int[] disappear) {
 3        return answer(n, edges, disappear);
@@ -16,7 +16,7 @@
 15            ll.get(edg[1]).add(new int[]{edg[0], edg[2]});
 16        }
 17
-18        int[] ans = new int[n];
+18         int[] ans = new int[n];
 19        Arrays.fill(ans, 9999999);
 20
 21        HashSet<Integer> visited = new HashSet<>();
