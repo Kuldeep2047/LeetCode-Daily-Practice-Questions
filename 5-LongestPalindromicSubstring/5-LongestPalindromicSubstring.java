@@ -1,4 +1,4 @@
-// Last updated: 5/15/2026, 9:28:01 PM
+// Last updated: 8/4/2026, 2:36:15 PM
 1class Solution {
 2    public String longestPalindrome(String s) {
 3        return answer(s);
@@ -20,7 +20,7 @@
 19                }
 20            }
 21        }
-22        for(double axis = 0.5 ;axis <n ;axis++){
+22        for(double axis = 0.5 ;axis < n ;axis++){
 23            for(double orbit= 0.5; axis - orbit>=0 && axis + orbit <n ;orbit++){
 24                if(s.charAt((int)(axis - orbit)) != s.charAt((int)(axis + orbit))){
 25                    break;
