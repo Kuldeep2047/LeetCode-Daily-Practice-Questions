@@ -1,41 +1,69 @@
-// Last updated: 3/25/2026, 11:20:54 AM
+// Last updated: 8/7/2026, 9:48:01 AM
 1class Solution {
-2    public int coinChange(int[] coins, int amount) {
-3        int n = coins.length;
-4        int[][] dp = new int[n][amount+1];
-5        for(int[] a : dp){
-6            Arrays.fill(a, -1);
-7        }
-8        int count =  answer(coins, amount, 0, dp);
-9        if(count == Integer.MAX_VALUE){
-10            return -1;
-11        }
-12        return count;
-13    }
-14    public int answer(int[] coins, int amount, int idx, int[][] dp){
-15        if(amount == 0){
-16            return 0;
-17        }
-18        if(amount < 0){
-19            return Integer.MAX_VALUE;
-20        }
-21        if(dp[idx][amount] != -1){
-22            return dp[idx][amount];
-23        }
-24        int ans =Integer.MAX_VALUE;
-25
-26        for(int i= idx ; i<coins.length ;i++){
-27            if(coins[i] <= amount){
-28                int res = answer(coins, amount - coins[i], i, dp);
-29                if(res != Integer.MAX_VALUE){
-30                    ans = Math.min(ans, res + 1);
-31                }
-32            }
-33        }
-34        return dp[idx][amount] =  ans;
-35
-36        
-37
-38
-39    }
-40}
+2    int[][] dp ;
+3    public int coinChange(int[] coins, int amount) {
+4        int n = coins.length;
+5        dp = new int[n][amount+1];
+6        for(int[] a : dp){
+7            Arrays.fill(a, -1);
+8        }
+9        int ans= answer(coins, amount, 0);
+10        if(ans == Integer.MAX_VALUE){
+11            return -1;
+12        }
+13        return ans;
+14    }
+15
+16    public int answer(int[] coins, int amount, int idx){
+17        if(amount == 0){
+18            return 0;
+19        }
+20        if(amount < 0){
+21            return Integer.MAX_VALUE;
+22        }
+23
+24        if(dp[idx][amount] != -1){
+25            return dp[idx][amount];
+26        }
+27        int ans = Integer.MAX_VALUE;
+28        for(int i = idx ; i<coins.length ;i++){
+29            if(coins[i] <= amount){
+30                int res = answer(coins, amount - coins[i], i);
+31                if(res != Integer.MAX_VALUE){
+32                    ans = Math.min(ans, res+1);
+33                }
+34            }
+35        }
+36
+37        return dp[idx][amount] = ans;
+38    }
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67   
+68}
