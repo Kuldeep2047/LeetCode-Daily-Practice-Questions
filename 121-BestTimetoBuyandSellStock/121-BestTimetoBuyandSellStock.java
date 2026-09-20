@@ -1,21 +1,21 @@
-// Last updated: 1/4/2026, 1:00:11 PM
+// Last updated: 9/20/2026, 4:48:08 PM
 1class Solution {
 2    public int maxProfit(int[] prices) {
-3        return stockProfit(prices);
+3        return answer(prices);
 4    }
-5    public int stockProfit(int[] prices){
-6        int n = prices.length;
-7        int profit =0;
-8        int buy = prices[0];
-9        for(int i=1;i<n;i++){
-10            if(buy> prices[i]){
-11                buy = prices[i];
-12            }
-13            int sellProfit = prices[i]-buy;
-14            if(sellProfit > profit){
-15                profit = sellProfit;
-16            }
-17        }
-18        return profit;
+5
+6    public int answer(int[] arr){
+7        int max_Profit = 0;
+8        int buy = arr[0];
+9        int profit = 0;
+10        for(int i=1 ;i<arr.length ;i++){
+11            if(arr[i] < buy){
+12                buy = arr[i];
+13            }
+14            profit = arr[i] - buy;
+15            max_Profit = Math.max(max_Profit, profit);
+16        }
+17
+18        return max_Profit;
 19    }
 20}
