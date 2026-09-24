@@ -1,4 +1,4 @@
-// Last updated: 1/5/2026, 12:02:19 PM
+// Last updated: 9/24/2026, 2:04:41 PM
 1class Solution {
 2    public int minDistance(String word1, String word2) {
 3        int[][] dp = new int[word1.length()][word2.length()];
