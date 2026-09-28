@@ -1,4 +1,4 @@
-// Last updated: 1/9/2026, 6:34:33 PM
+// Last updated: 9/28/2026, 12:51:11 PM
 1class Solution {
 2    public List<Integer> diffWaysToCompute(String expression) {
 3        return answer(expression);
@@ -25,18 +25,19 @@
 24                        }
 25                        else if( ch == '-'){
 26                            ans.add(a-b);
-27                        }else{
-28                            ans.add(a*b);
-29                        }
-30                    }
-31                }
-32            }
-33        }
-34        //ye base case hai
-35        if(ans.isEmpty()){
-36            ans.add(Integer.parseInt(str));
-37        }
-38        
-39        return ans;
-40    }
-41}
+27                        }
+28                        else{
+29                            ans.add(a*b);
+30                        }
+31                    }
+32                }
+33            }
+34        }
+35        //ye base case hai
+36        if(ans.isEmpty()){
+37            ans.add(Integer.parseInt(str));
+38        }
+39        
+40        return ans;
+41    }
+42}
