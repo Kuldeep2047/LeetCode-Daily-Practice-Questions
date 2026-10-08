@@ -1,4 +1,4 @@
-// Last updated: 1/20/2026, 3:41:15 PM
+// Last updated: 10/8/2026, 12:01:48 PM
 1class Solution {
 2    public String removeOuterParentheses(String s) {
 3        return answer2(s);
@@ -28,26 +28,5 @@
 27        return sb.toString();
 28    }
 29
-30    public String answer(String s){
-31        int n = s.length();
-32        // Stack<Character> st = new Stack<>();
-33        int c =0;
-34        StringBuilder sb = new StringBuilder();
-35        for(int i=0 ;i<n ;i++){
-36            char ch  = s.charAt(i);
-37            if(ch == '('){
-38                if(c>0){
-39                    sb.append('(');
-40                }
-41                c++;
-42            }
-43            else{
-44                c--;
-45                if(c>0){
-46                    sb.append(')');
-47                }
-48            }
-49        }
-50        return sb.toString();
-51    }
-52}
+30    
+31}
